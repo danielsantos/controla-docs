@@ -12,4 +12,9 @@ public class HomeController {
 		return new ModelAndView("index");
 	}
 	
+	@RequestMapping("/home")
+	public ModelAndView home() {
+		return new ModelAndView("home");
+	}
+	
 }
