@@ -1,5 +1,8 @@
 package com.danielrocha.controladocs.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,11 +29,17 @@ public class Diligencia {
 	@Column(length = 2)
 	private String uf;
 	
+	@Column
+	private Date prazoEntrega;
+	
 	@Column(length = 100)
 	private String municipio;
 	
 	@OneToOne
 	private Usuario usuario;
+	
+	@Column
+	private String descricao;
 	
 	@OneToOne
 	private Correspondente correspondente;
@@ -123,6 +132,29 @@ public class Diligencia {
 
 	public void setMunicipio(String municipio) {
 		this.municipio = municipio;
+	}
+
+	public Date getPrazoEntrega() {
+		return prazoEntrega;
+	}
+
+	public void setPrazoEntrega(Date prazoEntrega) {
+		this.prazoEntrega = prazoEntrega;
+	}
+	
+	public String getPrazoEntregaStr() {
+		if (prazoEntrega != null)
+			return new SimpleDateFormat("dd/MM/yyyy").format(this.prazoEntrega);
+		else
+			return null;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 }

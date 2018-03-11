@@ -45,6 +45,14 @@ public class Correspondente {
 	@Transient
 	private String passwordConfirm;
 
+	public Correspondente() {
+		
+	}
+	
+	public Correspondente(Long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}

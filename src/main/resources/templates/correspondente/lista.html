@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Sistema</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+        
+        <style type="text/css">
+	        .campo {
+	            display: grid;
+	            width: 200px;
+	            text-align: center;
+	        }
+    	</style>
+    	
+    	<script>
+    		$(document).ready(function () {       
+    	
+		      $("#situacao").change(function() {
+
+		    	  var situacao = $("#situacao").val();
+		    	  if (situacao == 'T') {		    	  
+		    	  	$('#form').attr('action','/home');
+		    	  } else {
+					$('#form').attr('action','/home/filtro?situacao='+situacao);
+		    	  }
+		    	  $('#form').submit();
+		    	  
+		      });
+		      
+		    });
+		</script>
+        
+    </head>
+    <body>
+        <div th:replace="fragments/menu :: menu"></div>
+
+        <div style="margin: 30px">
+
+        </div>
+
+        <div class="container">
+       		
+       		<div class="page-header">
+       			<h1>Correspondentes</h1>
+		    </div>
+    
+			<div id="principal" style="align: center; text-align: center; margin-top: 18px; margin-left: 25%; width: 55%;">
+				<div class="alert alert-success" th:if="${msgSucesso ne null}">
+					<span th:text="${msgSucesso}"></span>
+				</div>
+			</div>
+
+		    <div style="margin: 10px">
+		    	UF:<br/>
+		    	<select id="situacao" name="situacao">
+					<option value="T" selected="selected">Todos</option>
+					<option value="P" th:selected="${situacao == 'P'}">Pendentes</option>
+					<option value="A" th:selected="${situacao == 'A'}">Em Atraso</option>
+					<option value="C" th:selected="${situacao == 'C'}">Concluídos</option>			    		
+		    	</select> 
+		    	<br/><br/>
+		        <a class="btn btn-sm btn-success" th:href="@{/diligencia/add/}" >Adicionar</a>
+		    </div>
+		    
+		    <form id="form" method="post">
+		    </form>
+
+		    <div class="card" th:each="obj: ${lista}" style="margin-bottom: 10px;" onmouseover="this.style.background='#EEE9E9';" onmouseout="this.style.background='white';">
+		        <div class="card-block" style="display: flex">
+		            <div class="campo">
+		            	<b>Nome</b>
+		                <label th:text="${obj.nome}"></label>
+		            </div>
+		            <div style="width: 120px; margin-top: 12px;">
+		                <a class="btn btn-sm btn-primary" th:href="@{/diligencia/edit/{id}(id=${obj.id})}" >DETALHES</a>
+		            </div>
+		        </div>
+		    </div>
+       			 
+        </div>
+
+    </body>
+</html>

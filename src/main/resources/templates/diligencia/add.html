@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Sistema</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script>
+  			$( function() {
+    			$("#prazoEntrega").datepicker({ dateFormat: 'dd/mm/yy' }).val();
+  			} );
+  		</script>
+    </head>
+    <body>
+        <div th:replace="fragments/menu :: menu"></div>
+
+        <div style="margin: 30px">
+
+        </div>
+
+        <div class="container">
+       		
+       		<div class="page-header">
+       			<h1>Cadastrar Nova Diligência</h1>
+		    </div>
+		    
+		    <div class="panel-body">
+				<form class="form-horizontal" th:object="${diligencia}" th:action="@{/diligencia/save}" method="POST" style="margin: 10px">
+					
+					<div class="form-group">
+	 					<fieldset>
+							<div class="form-group row">
+							    <div class="col-md-1">
+							        <input type="text" class="form-control input-sm" id="id" th:field="*{id}" readOnly="readonly"/>
+							    </div>
+							 </div>
+							<div class="form-group row">                                                          
+								<div class="col-md-4">
+								    <label>Nome</label>
+								    <input type="text" class="form-control input-sm" th:field="*{nome}" autofocus="autofocus" placeholder="Informe o Nome do Produto" maxlength="50" name="nomeProduto" id="nomeProduto" />
+								</div>
+								
+								<div class="col-md-4">
+									<label>Prazo de Entrega</label>
+									<input type="text" id="prazoEntrega" class="form-control input-sm" th:field="*{prazoEntrega}" autofocus="autofocus" maxlength="50" style="width: 190px;" />
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<div class="col-md-4">
+									<label>Descrição</label>
+									<textarea th:field="*{descricao}" class="form-control input-sm" rows="10"></textarea>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="form-group row">
+						<button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+						<a th:href="@{/}" class="btn btn-sm btn-default">Cancelar</a>
+					</div>
+				</form>
+			</div>
+        </div>
+
+    </body>
+</html>

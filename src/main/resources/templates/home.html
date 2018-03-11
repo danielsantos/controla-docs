@@ -63,7 +63,7 @@
 					<option value="C" th:selected="${situacao == 'C'}">Concluídos</option>			    		
 		    	</select> 
 		    	<br/><br/>
-		        <a class="btn btn-sm btn-success" th:href="@{/leilao/add/}" >Adicionar</a>
+		        <a class="btn btn-sm btn-success" th:href="@{/diligencia/add/}" >Adicionar</a>
 		    </div>
 		    
 		    <form id="form" method="post">
@@ -92,8 +92,12 @@
 		                <b>Correspondente</b>
 		                <label th:text="${obj.correspondente.nome}"></label>
 		            </div>
+		            <div class="campo">
+		                <b>Prazo de Entrega</b>
+		                <label th:text="${obj.prazoEntregaStr}"></label>
+		            </div>
 		            <div style="width: 120px; margin-top: 12px;">
-		                <a class="btn btn-sm btn-primary" th:href="@{/leilao/edit/{uuid}(uuid=${obj.uuid})}" >DETALHES</a>
+		                <a class="btn btn-sm btn-primary" th:href="@{/diligencia/edit/{id}(id=${obj.id})}" >DETALHES</a>
 		            </div>
 		        </div>
 		    </div>
